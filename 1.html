@@ -1,0 +1,404 @@
+
+<!-- saved from url=(0039)http://seat.lib.whu.edu.cn/freeBook/fav -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>常用座位 :: 图书馆空间预约系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="利昂系统，利昂软件，图书馆空间预约系统，占座系统，私有云网盘开发商">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="http://seat.lib.whu.edu.cn/images/favicon.ico?_debugResources=y&amp;n=1512197780633" type="image/x-icon">
+    
+    <script src="./常用座位 __ 图书馆空间预约系统_files/jquery-1.11.1.min.js.下载" type="text/javascript"></script>
+<link href="./常用座位 __ 图书馆空间预约系统_files/jquery-ui-1.10.4.custom.css" type="text/css" rel="stylesheet" media="screen, projection">
+<script src="./常用座位 __ 图书馆空间预约系统_files/jquery-ui-1.10.4.custom.min.js.下载" type="text/javascript"></script>
+<link href="./常用座位 __ 图书馆空间预约系统_files/style.css" type="text/css" rel="stylesheet" media="screen, projection">
+<script src="./常用座位 __ 图书馆空间预约系统_files/common.js.下载" type="text/javascript"></script>
+
+    
+    
+    <meta name="layout" content="pcMain2">
+    
+    
+
+    
+</head>
+<body onselectstart="return false">
+<div class="header">
+    <h1 class="logo fl"><img src="./常用座位 __ 图书馆空间预约系统_files/logo.png" width="181" height="51"></h1>
+    <h2 class="logoName fl"><img src="./常用座位 __ 图书馆空间预约系统_files/logoName.png" width="204" height="44"></h2>
+    <div class="userInfor fr">
+        <ul>
+            <li><i class="timeIcon"></i><span id="currentDate">2017-12-02</span> <span id="currentTime">15:03</span></li>
+            <li><i class="renIcon"></i><strong>孙毓钊</strong> 同学</li>
+        </ul>
+    </div>
+</div>
+<div class="handleBtns" style="">
+    <div class="topHandle">
+        <ul>
+            <li>
+                <a id="btnStop" href="http://seat.lib.whu.edu.cn/freeBook/fav#" action="stopUsing" class="disabled">结束使用</a>
+            </li>
+            <li>
+                <a id="btnExtend" href="http://seat.lib.whu.edu.cn/freeBook/fav#" action="getTimeExtend" class="disabled">续约</a>
+            </li>
+            <li id="awayBlock">
+                <a id="btnAway" href="http://seat.lib.whu.edu.cn/freeBook/fav#" action="leave" class="disabled">暂离</a>
+            </li>
+            <li style="display: none" id="resumeBlock">
+                <a id="btnResume" href="http://seat.lib.whu.edu.cn/freeBook/fav#" action="resume" class="disabled">返回</a>
+            </li>
+            <li>
+                <a id="btnCheckIn" href="http://seat.lib.whu.edu.cn/freeBook/fav#" action="checkIn" class="disabled">签到</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--header end of-->
+<div class="warp">
+    <div style="display: none;" id="msgBoxDIV" class="msgBoxDIV">
+        <span class="msg">
+        </span>
+    </div>
+</div>
+
+
+<div class="warp">
+    
+<div class="menu fl">
+    <ul>
+        
+            <li class=""><a href="http://seat.lib.whu.edu.cn/" onfocus="this.blur()"><i class="seat"></i>自选座位</a></li>
+            <li class=""><a href="http://seat.lib.whu.edu.cn/map" onfocus="this.blur()"><i class="layout"></i>布局选座</a></li>
+            <li class="onHover"><a href="http://seat.lib.whu.edu.cn/freeBook/fav" onfocus="this.blur()"><i class="layoutHover"></i>常用座位</a></li>
+        
+        
+        <li class=""><a href="http://seat.lib.whu.edu.cn/history?type=SEAT" onfocus="this.blur()"><i class="myReserve"></i>我的预约</a></li>
+        <li class=""><a href="http://seat.lib.whu.edu.cn/user/violations" onfocus="this.blur()"><i class="myViolation"></i>违约记录</a></li>
+        <li class=""><a href="http://seat.lib.whu.edu.cn/logout" onfocus="this.blur()"><i class="goBack"></i> 退  出</a></li>
+    </ul>
+</div>
+    <!--menu end of-->
+    <div class="mainContent fr">
+
+        <div class="content">
+            <div class="selectContent">
+                <form onsubmit="jQuery.ajax({type:&#39;POST&#39;,data:jQuery(this).serialize(), url:&#39;/freeBook/ajaxSearch&#39;,success:function(data,textStatus){firstSearch(data);},error:function(XMLHttpRequest,textStatus,errorThrown){}});return false" method="post" action="http://seat.lib.whu.edu.cn/freeBook/ajaxSearch" id="search">
+
+                    <div class="selectBox line" id="select_line_2">
+                        <dl>
+                            <dd>
+                                
+                                    <div class="select_box168 fl zindex_20" name="onDate_select" id="onDate_select">
+<a href="javascript:void(0);" id="display_onDate" class="selectBoxValue">选择日期</a><p id="options_onDate"><a href="javascript:void(0)" value="2017-12-02">2017-12-02</a></p><input type="hidden" name="onDate" id="onDate" value=""></div>
+                                
+                            </dd>
+                        </dl>
+                    </div>
+                </form>
+            <!--selectBox end of-->
+            </div>
+            <!--selectContent end of-->
+            <div class="detailContent">
+                <h3 class="seatTip">常用座位列表</h3>
+                <div class="seatList" id="favSeatList">
+                    <div class="items" id="seats">
+                    <ul class="item">
+                    
+
+                        <li class="free " id="seat_8765" local="false">
+                            <dl>
+                                <dt>089</dt>
+                                <dd>信息科学分馆3楼三楼自主学习区教室089座位</dd>
+                            </dl>
+                        </li>
+
+                    
+
+                        <li class="free " id="seat_7155" local="false">
+                            <dl>
+                                <dt>009</dt>
+                                <dd>信息科学分馆4楼四楼西图书阅览区教室009座位</dd>
+                            </dl>
+                        </li>
+
+                    
+                    </ul>
+                    </div>
+                </div>
+                <!--seatList end of-->
+
+                <!--page end of-->
+            </div>
+            <!--detailContent end of-->
+            <!--content end of-->
+        </div>
+    </div>
+</div>
+
+<form action="http://seat.lib.whu.edu.cn/selfRes" method="post" name="reserveForm" id="reserveForm">
+    <input type="hidden" name="date" value="" id="date">
+    <input type="hidden" name="seat" value="" id="seat">
+    <input type="hidden" name="start" value="" id="start">
+    <input type="hidden" name="end" value="" id="end">
+    <input type="hidden" name="captcha" value="" id="captcha">
+</form>
+
+
+
+<div class="seatTime" style="display: block; left: -204.5px; top: 36.5px;">
+    <h6 class="fl"><span id="selected_description">您选择的座位是：</span><code id="seatNumber"> 座位 089</code> (日期: <span class="reserveDate" id="reserveDate">今天</span>)</h6>
+    <div class="seatTimeTop" style="height:332px">
+        <div class="reserve_detail" id="reserve_detail">
+
+        </div>
+        <div class="startTime fl" id="startTime">
+            <h4>开始时间</h4>
+	    <dl>
+		<div class="loading" id="load_start" style="display: none;"><i class="loadIcon"></i>加载中，请稍候...</div>
+		<ul><input type="hidden" name="seat" value="8765" id="seat">
+
+
+    <li><a href="http://seat.lib.whu.edu.cn/freeBook/fav#" time="1290">21:30</a></li>
+
+    <li><a href="http://seat.lib.whu.edu.cn/freeBook/fav#" time="1320">22:00</a></li>
+
+    <li><a href="http://seat.lib.whu.edu.cn/freeBook/fav#" time="1350">22:30</a></li>
+
+    <li><a href="http://seat.lib.whu.edu.cn/freeBook/fav#" time="1380">23:00</a></li>
+
+    <li><a href="http://seat.lib.whu.edu.cn/freeBook/fav#" time="1410">23:30</a></li>
+
+
+
+</ul>
+	    </dl>
+        </div>
+        <div class="endTime fr" id="endTime">
+            <h4>结束时间</h4>
+            <dl>
+                <p>请先选择左侧开始时间</p>
+                <div class="loading" id="load_end"><i class="loadIcon"></i>加载中，请稍候...</div>
+                <ul id="endTimeCotent">
+                    <li><a href="#" time="1320">22:00</a></li>
+                </ul>
+            </dl>
+        </div>
+    </div>
+    <div id="reservationCaptcha"><div><input id="captchaValue" class="input3"><img class="code" src="./常用座位 __ 图书馆空间预约系统_files/captcha"></div></div>
+    <div class="seatTimeFoot fl" id="reservationAction">
+        <a href="http://seat.lib.whu.edu.cn/freeBook/fav#" class="sureBtn" id="reserveBtn">预 约</a>
+        <a href="http://seat.lib.whu.edu.cn/freeBook/fav#" class="cancelBtn">取 消</a>
+    </div>
+</div>
+
+<div class="seatSearch">
+    <h3>按座位号来选择</h3>
+    <dl>
+        <dt><input name="" type="text" class="seatInput" id="seatInput" size="24" value="请输入座位号"></dt>
+        <dd class="seatLink">1</dd>
+        <dd class="seatLink">2</dd>
+        <dd class="seatLink">3</dd>
+        <dd class="seatLink">4</dd>
+        <dd class="seatLink">5</dd>
+        <dd class="seatLink">6</dd>
+        <dd class="seatLink">7</dd>
+        <dd class="seatLink">8</dd>
+        <dd class="seatLink">9</dd>
+        <dd class="seatLink">0</dd>
+        <dd class="seatLinkBtn" id="seatLinkBtn">清 除</dd>
+        <a href="http://seat.lib.whu.edu.cn/freeBook/fav#" class="closeSeat">关 闭</a>
+        <a href="http://seat.lib.whu.edu.cn/freeBook/fav#" class="sureSeat" id="searchBySeatID">确 认</a>
+    </dl>
+</div>
+
+<div class="loading2" style="display: block;"></div>
+<div class="dialog" style="left: 780px; top: 424px;"><i class="loadIcon"></i>数据加载中, 请稍候 ...</div>
+
+<!--签到-->
+<div class="ToolTip_show SignIn_show" id="resultMessageDiv">
+    <div class="ui_dialog">
+        <a href="http://seat.lib.whu.edu.cn/freeBook/fav#" class="closeDIV">关闭</a>
+        <div class="resultMessage">签到成功（失败原因）</div>
+        <div class="handle">
+            <input type="button" value="确定" class="btnOK">
+            <input type="button" value="退出系统" class="btnClose" id="btnExit">
+        </div>
+    </div>
+</div>
+
+<!--续约-->
+<div class="ToolTip_show Renewal_show" id="extendDiv">
+    <div class="ui_dialog">
+        <a href="http://seat.lib.whu.edu.cn/freeBook/fav#" class="closeDIV">关闭</a>
+        <p class="messageHead">选中下列时段进行续约</p>
+        <ul class="renewal_List clear">
+            <li>
+                <a href="http://seat.lib.whu.edu.cn/freeBook/fav#">05:00</a>
+            </li>
+            <li>
+                <a href="http://seat.lib.whu.edu.cn/freeBook/fav#">06:00</a>
+            </li>
+
+        </ul>
+        <div class="resultMessage"></div>
+        <div class="handle">
+            <input type="button" value="确定" class="btnOK" action="extend">
+        </div>
+    </div>
+</div>
+
+<div id="spinner" class="spinner" style="display:none;">载入中</div>
+
+<script src="./常用座位 __ 图书馆空间预约系统_files/application.js.下载" type="text/javascript"></script>
+<script src="./常用座位 __ 图书馆空间预约系统_files/base.js.下载" type="text/javascript"></script>
+<script src="./常用座位 __ 图书馆空间预约系统_files/select.js.下载" type="text/javascript"></script>
+<script src="./常用座位 __ 图书馆空间预约系统_files/jquery-migrate-1.2.1.min.js.下载" type="text/javascript"></script>
+<script src="./常用座位 __ 图书馆空间预约系统_files/jquery.tools.min.js.下载" type="text/javascript"></script>
+<script src="./常用座位 __ 图书馆空间预约系统_files/jquery.dialog.js.下载" type="text/javascript"></script>
+<script src="./常用座位 __ 图书馆空间预约系统_files/pcMain.js.下载" type="text/javascript"></script>
+<script type="text/javascript">
+    var searchMode = 'NORMAL'; // or 'NAME'
+
+    function reserve(){
+        var startTime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        if (startTime == 'null' || endTime == 'null'){
+            alert('请选择开始结束时间');
+        }else{
+            $("#reserveForm").submit();
+            selectli();
+        }
+    }
+
+    var currentSeat, startTime, endTime;
+    $("#seats").on("click", 'li', function() {
+        var localOnly = $(this).attr('local');
+        if (localOnly === 'true') {
+            alert("该座位仅在限触屏机上可预约");
+            return;
+        }
+        startTime = null;
+        endTime = null;
+        currentSeat = this.id.replace('seat_', '');
+        var onDate = $("#onDate").val();
+        $('.reserveDate').html(onDate ? onDate : '今天');
+
+
+        $(".seatTime").show();
+	    $("#startTime").find('ul').html("");
+	    $('#endTime').find('ul').html('');
+
+	    $("#load_start").show();
+        $(".loading2").hide()
+        var this_text = ' 座位 ' + $(this).find('dt').text();
+        $("#seatNumber").text(this_text);
+
+        jQuery.ajax({type:'POST',data:'id=' + currentSeat + '&date=' + onDate, url:'/freeBook/ajaxGetTime',success:function(data,textStatus){onSuccessFromGetTime(data);},error:function(XMLHttpRequest,textStatus,errorThrown){}});
+    });
+
+    function onSuccessFromGetTime(data){
+        if (data){
+            $("#load_start").hide();
+            $("#startTime").find('ul').html(data);
+            // show captcha based on setting
+            
+            $('#reservationCaptcha').html('<div><input id="captchaValue" class="input3"/><img class="code" src="/simpleCaptcha/captcha"/></div>');
+            
+
+        }
+    }
+
+    $("#startTime").on("click", 'a', function() {
+        startTime = $(this).attr('time');
+        var onDate = $("#onDate").val();
+        jQuery.ajax({type:'POST',data:'start=' + startTime +'&seat=' + currentSeat +'&date=' + onDate, url:'/freeBook/ajaxGetEndTime',success:function(data,textStatus){onSuccessFromGetEndTime(data);},error:function(XMLHttpRequest,textStatus,errorThrown){}});
+        $('#endTimeCotent').html('');
+    });
+
+    function onSuccessFromGetEndTime(data){
+        if (data){
+            $("#endTimeCotent").html(data);
+            $(".loading").hide();
+        }
+    }
+
+    $("#endTime").on("click", 'a', function(){
+        $(this).addClass("onEndTime");
+        endTime = $(this).attr('time');
+    });
+
+    $('#reserveBtn').click(function(){
+        if (startTime == null) {
+            alert('请选择开始时间');
+        }else if (endTime == null){
+            alert('请选择结束时间');
+        }else{
+            showSeatTime();
+            $(".seatTime").hide();
+            $('#date').val($('#onDate').val());
+            $('#reserveForm #seat').val(currentSeat);
+            $('#start').val(startTime);
+            $('#end').val(endTime);
+            $('#captcha').val($('#captchaValue').val())
+            $("#reserveForm").submit();
+        }
+    });
+
+    $(".cancelBtn").click(function() {
+        $(".loading2").hide();
+        $(".seatTime").hide(); //显示提示对话框
+    })
+
+    $(".closeMB").click(function(){
+      $("#moreOptionBlock").hide();
+      $(".moreBtn").parent().show();
+      $("#select_line_2").addClass("line");
+    });
+
+    function showSpinner() {
+        $(".loading2").show();
+        showDialogLoading();
+        $(".dialog").show();
+    }
+    function removeSpinner(){
+        $(".dialog").hide();
+        $(".loading2").hide();
+    }
+    
+        setInterval(function(){setDateTime();}, 1000);
+
+        $(function(){
+            setDateTime();
+            $(".handleBtns").hide();
+            var userInfo = '{"currentReservationStatus":"NO_RESERVATION","hasPrevUnStoppedReservation":false,"userCheckedIn":false,"lastIn":null,"wifiAwayDisabled":false,"wifiStopDisabled":false,"softMode":true}';
+            userInfo = $.parseJSON(userInfo);
+            initializePage(userInfo);
+            $("#btnExit").click(function(){
+                window.location = "/logout";
+            });
+            
+        });
+
+        function btnClick(btn, param) {
+            btn.css('backgroundColor','#ef9d45');
+            $(".loading2").css('display','block');
+            var actionName = btn.attr("action");
+            var paramAll = actionName;
+            if (param) {
+                paramAll += param;
+            }
+            $.ajax({
+                url: "/user/" + paramAll,
+                success: function(data){
+                    showResult(actionName, true, data);
+                },
+                error:function(){
+                    showResult(actionName, false, data);
+                }
+            });
+        }
+    </script>
+
+</body></html>
