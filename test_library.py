@@ -17,8 +17,8 @@ from selenium.common.exceptions import NoSuchElementException
 # reload(sys)
 # sys.setdefaultencoding("utf-8")
 
-_username = '2017282160045'
-_password = '193211'
+_username = ''
+_password = ''
 browser = webdriver.Chrome()
 
 
